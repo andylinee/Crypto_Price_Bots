@@ -1,1 +1,1 @@
-# Crpyto_Price_Bots
+# Crypto_Price_Bots
