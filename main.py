@@ -34,18 +34,37 @@ def handle_message(event):
     message_type = event.message.type
     user_id = event.source.user_id
     reply_token = event.reply_token
-    sent = event.message.text.split(' ')
+    message = event.message.text
+    sent = message.split(' ')
     if sent[0] == '$':
-        message = price_table(sent)
-    line_bot_api.reply_message(reply_token, TextSendMessage(text = message))
+        message = price_table(message)
+    line_bot_api.reply_message(reply_token, TextSendMessage(text = event.message.text))
 
 def price_table(sentence):
-    token_list = sentence[1:]
+    column = pd.DataFrame(columns=['Token', 'Price', '24HR', '7D', '30D'])
+    token_list = sentence.split(' ')[1:]
+    #print(token_list)
     for i in range(len(token_list)):
         token = token_list[i]
-        
-
-
+        print(token)
+        request_url = "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids="+token+"&price_change_percentage=24h,7d,30d"
+        response = requests.get(request_url)
+        data = json.loads(response.text)
+        values = list()
+        values.append(token)
+        values.append(data[0]['current_price'])
+        values.append("{0:.2f}%".format(data[0]['price_change_percentage_24h_in_currency']))
+        try:
+            values.append("{0:.2f}%".format(data[0]['price_change_percentage_7d_in_currency']))
+        except:
+            values.append("Null")
+        try:
+            values.append("{0:.2f}%".format(data[0]['price_change_percentage_30d_in_currency']))
+        except:
+            values.append("Null")
+        column.loc[i] = values
+    print(column)
+    return column
 
 if __name__ == "__main__":
     #port = int(os.environ.get('PORT', 80))
