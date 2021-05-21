@@ -6,6 +6,9 @@ from linebot.exceptions import (
     InvalidSignatureError
 )
 from linebot.models import *
+import pandas as pd
+import requests
+import json
 
 
 app = Flask(__name__)
@@ -31,10 +34,19 @@ def handle_message(event):
     message_type = event.message.type
     user_id = event.source.user_id
     reply_token = event.reply_token
-    message = event.message.text
+    sent = event.message.text.split(' ')
+    if sent[0] == '$':
+        message = price_table(sent)
     line_bot_api.reply_message(reply_token, TextSendMessage(text = message))
 
-import os
+def price_table(sentence):
+    token_list = sentence[1:]
+    for i in range(len(token_list)):
+        token = token_list[i]
+        
+
+
+
 if __name__ == "__main__":
     #port = int(os.environ.get('PORT', 80))
     #app.run(host='0.0.0.0', port=port)
