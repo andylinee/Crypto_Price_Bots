@@ -38,7 +38,9 @@ def handle_message(event):
     sent = message.split(' ')
     if sent[0] == '$':
         message = price_table(message)
-    line_bot_api.reply_message(reply_token, TextSendMessage(text = event.message.text))
+    FlexMessage = json.load(open('FlexMessage.json', 'r', encoding='utf-8'))
+    line_bot_api.reply_message(reply_token, FlexSendMessage('Price Table', FlexMessage))
+    #line_bot_api.reply_message(reply_token, TextSendMessage(text = event.message.text))
 
 def price_table(sentence):
     column = pd.DataFrame(columns=['Token', 'Price', '24HR', '7D', '30D'])

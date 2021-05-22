@@ -1,0 +1,120 @@
+{
+  "type": "bubble",
+  "body": {
+    "type": "box",
+    "layout": "vertical",
+    "contents": [
+      {
+        "type": "text",
+        "text": "Price Table",
+        "weight": "bold",
+        "size": "xl",
+        "margin": "md"
+      },
+      {
+        "type": "box",
+        "layout": "vertical",
+        "margin": "md",
+        "contents": [
+          {
+            "type": "box",
+            "layout": "horizontal",
+            "contents": [
+              {
+                "type": "text",
+                "text": "Token",
+                "size": "sm",
+                "color": "#555555",
+                "flex": 2,
+                "weight": "bold"
+              },
+              {
+                "type": "text",
+                "text": "Price",
+                "size": "sm",
+                "color": "#111111",
+                "weight": "bold",
+                "align": "end"
+              },
+              {
+                "type": "text",
+                "text": "24HR",
+                "size": "sm",
+                "color": "#111111",
+                "weight": "bold",
+                "align": "end"
+              },
+              {
+                "type": "text",
+                "text": "7D",
+                "size": "sm",
+                "color": "#111111",
+                "weight": "bold",
+                "align": "end"
+              },
+              {
+                "type": "text",
+                "text": "30D",
+                "size": "sm",
+                "color": "#111111",
+                "weight": "bold",
+                "align": "end"
+              }
+            ]
+          },
+          {
+            "type": "separator",
+            "margin": "md"
+          },
+          {
+            "type": "box",
+            "layout": "horizontal",
+            "contents": [
+              {
+                "type": "box",
+                "layout": "baseline",
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": "token_1",
+                    "size": "sm",
+                    "color": "#555555"
+                  }
+                ],
+                "flex": 2
+              },
+              {
+                "type": "text",
+                "text": "p_1",
+                "size": "sm",
+                "color": "#111111",
+                "align": "end"
+              },
+              {
+                "type": "text",
+                "text": "24_1",
+                "size": "sm",
+                "color": "#111111",
+                "align": "end"
+              },
+              {
+                "type": "text",
+                "text": "7_1",
+                "size": "sm",
+                "color": "#111111",
+                "align": "end"
+              },
+              {
+                "type": "text",
+                "text": "30_1",
+                "size": "sm",
+                "color": "#111111",
+                "align": "end"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
