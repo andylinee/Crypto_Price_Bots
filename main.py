@@ -1,4 +1,5 @@
 from flask import Flask, request, abort
+import config
 from linebot import (
     LineBotApi, WebhookHandler
 )
@@ -6,16 +7,16 @@ from linebot.exceptions import (
     InvalidSignatureError
 )
 from linebot.models import *
+from CreatePriceTable import CreatePriceTable
 import pandas as pd
 import requests
 import json
-from CreatePriceTable import CreatePriceTable
 
 
 app = Flask(__name__)
-# LINE BOT info
-line_bot_api = LineBotApi('6bXHs/jPjVj0AF1omak6d+dDWo75sBBvdzDMlfdldmwn9kSDWAR7TKAcFvv3iqoEcUgHk6hlWZVWIbfOPmbuyyDcH9T3+fTB6pjU1TNwHN/gmVRIpXk/uV+rPxaw634q/R6BxtPUr79wHplnSnIn4gdB04t89/1O/w1cDnyilFU=')
-handler = WebhookHandler('718b8cd92bfb327982527e62b9b4f1c7')
+# LINE BOT info Settings
+line_bot_api = LineBotApi(config.LINE_CHANNEL_ACCESS_TOKEN)
+handler = WebhookHandler(config.LINE_CHANNEL_SECRET)
 
 @app.route("/callback", methods=['POST'])
 def callback():
@@ -30,7 +31,7 @@ def callback():
     return 'OK'
 
 # Message event
-@handler.add(MessageEvent)
+@handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     message_type = event.message.type
     user_id = event.source.user_id
@@ -38,9 +39,9 @@ def handle_message(event):
     message = event.message.text
     sent = message.split(' ')
     if sent[0] == '$':
-        message = CreatePriceTable.create_price_table(message)
-        FlexMessage = json.dumps(message)
-    print(FlexMessage)
+        flex_message = CreatePriceTable.create_price_table(message)
+        FlexMessage = flex_message
+    #print(FlexMessage, type(FlexMessage))
     #FlexMessage = json.load(open('FlexMessage.json', 'r', encoding='utf-8'))
     line_bot_api.reply_message(reply_token, FlexSendMessage('Price Table', FlexMessage))
     #line_bot_api.reply_message(reply_token, TextSendMessage(text = event.message.text))

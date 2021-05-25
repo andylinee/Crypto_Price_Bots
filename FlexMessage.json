@@ -1,16 +1,22 @@
 {
   "type": "bubble",
-  "body": {
+  "header": {
     "type": "box",
     "layout": "vertical",
     "contents": [
       {
         "type": "text",
-        "text": "Price Table",
+        "text": " Price Table",
         "weight": "bold",
         "size": "xl",
         "margin": "md"
-      },
+      }
+    ]
+  },
+  "body": {
+    "type": "box",
+    "layout": "vertical",
+    "contents": [
       {
         "type": "box",
         "layout": "vertical",
@@ -47,14 +53,6 @@
               {
                 "type": "text",
                 "text": "7D",
-                "size": "sm",
-                "color": "#111111",
-                "weight": "bold",
-                "align": "end"
-              },
-              {
-                "type": "text",
-                "text": "30D",
                 "size": "sm",
                 "color": "#111111",
                 "weight": "bold",
