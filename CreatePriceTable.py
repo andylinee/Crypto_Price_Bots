@@ -36,7 +36,7 @@ class CreatePriceTable:
         return FlexMessage
 
     def top_token_list(sentence):
-        num_top = sentence.split(' ')[1]
+        num_top = sentence.split(' ')[2]
         json_file = "FlexMessage.json"
         token_file = "TokenPrice.json"
         with open(json_file, 'r') as jf:
@@ -47,16 +47,15 @@ class CreatePriceTable:
             data = json.loads(response.text)
             for i in range(int(num_top)):
                 with open(token_file, 'r') as tp:
-                    print(token)
                     token_json = json.load(tp)
                     print(token_json)
                     token_json["contents"][0]["text"] = data[i]['symbol']
-                    token_json["contents"][1]["text"] = str(data[0]['current_price'])
-                    token_json["contents"][2]["text"] = "{0:.2f}%".format(data[0]['price_change_percentage_24h_in_currency'])
+                    token_json["contents"][1]["text"] = str(data[i]['current_price'])
+                    token_json["contents"][2]["text"] = "{0:.2f}%".format(data[i]['price_change_percentage_24h_in_currency'])
                     try:
-                        token_json["contents"][3]["text"] = "{0:.2f}%".format(data[0]['price_change_percentage_7d_in_currency'])
+                        token_json["contents"][3]["text"] = "{0:.2f}%".format(data[i]['price_change_percentage_7d_in_currency'])
                     except:
-                        token_json["contents"][3]["text"] = "{0:.2f}%".format(data[0]['price_change_percentage_7d_in_currency'])
+                        token_json["contents"][3]["text"] = "{0:.2f}%".format(data[i]['price_change_percentage_7d_in_currency'])
                     FlexMessage["body"]["contents"][0]["contents"].append(token_json)
                     print("-" * 30)
                     print(token_json)
