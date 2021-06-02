@@ -21,7 +21,7 @@ class CreatePriceTable:
                     request_url = "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids="+token+"&price_change_percentage=24h,7d"
                     response = requests.get(request_url)
                     data = json.loads(response.text)
-                    token_json["contents"][0]["text"] = data[0]['symbol'].upper()
+                    token_json["contents"][0]["text"] = data[0]['symbol'].upper() + " (" + data[0]['name'] + ")"
                     token_json["contents"][1]["text"] = str(data[0]['current_price'])
                     token_json["contents"][2]["text"] = "{0:.2f}%".format(data[0]['price_change_percentage_24h_in_currency'])
                     try:
@@ -49,7 +49,7 @@ class CreatePriceTable:
                 with open(token_file, 'r') as tp:
                     token_json = json.load(tp)
                     print(token_json)
-                    token_json["contents"][0]["text"] = data[i]['symbol'].upper()
+                    token_json["contents"][0]["text"] = data[i]['symbol'].upper() + " (" + data[i]['name'] + ")"
                     token_json["contents"][1]["text"] = str(data[i]['current_price'])
                     token_json["contents"][2]["text"] = "{0:.2f}%".format(data[i]['price_change_percentage_24h_in_currency'])
                     try:
