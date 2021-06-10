@@ -42,6 +42,7 @@ class CreatePriceTable:
         with open(json_file, 'r') as jf:
             FlexMessage = json.load(jf)
             #print(FlexMessage)
+            FlexMessage["header"]["contents"][0]["text"] = 'Top ' + str(num_top) + ' Token'
             request_url = "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=" + num_top + "&page=1&sparkline=false&price_change_percentage=1h%2C24h%2C7d"
             response = requests.get(request_url)
             data = json.loads(response.text)
