@@ -2,6 +2,8 @@ import json
 import requests
 import pandas as pd
 
+SBF_list = ['ftx-token', 'serum', 'solana', 'bonfida', 'maps', 'raydium', 'oxygen', 'sushi']
+
 
 class CreatePriceTable:
     def create_price_table(sentence):
@@ -12,6 +14,8 @@ class CreatePriceTable:
             FlexMessage = json.load(jf)
             print(FlexMessage)
             #TokenPrice = json.load("TokenPrice.json")
+            if token_list[0] == "SBF":
+                token_list = SBF_list
             for i in range(len(token_list)):
                 with open(token_file, 'r') as tp:
                     token = token_list[i]
