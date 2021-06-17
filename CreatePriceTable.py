@@ -16,8 +16,10 @@ class CreatePriceTable:
             #TokenPrice = json.load("TokenPrice.json")
             if token_list[0] == "SBF":
                 token_list = SBF_list
+                FlexMessage["header"]["contents"][0]["text"] = 'SBF Token'
             elif token_list[0] == "Platform":
                 token_list = platform_list
+                FlexMessage["header"]["contents"][0]["text"] = 'Platform Token'
             for i in range(len(token_list)):
                 with open(token_file, 'r') as tp:
                     token = token_list[i]
