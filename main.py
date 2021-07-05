@@ -41,13 +41,10 @@ def handle_message(event):
     if sent[0] == '$':
         if sent[1] == "top":
             flex_message = CreatePriceTable.top_token_list(message)
-            FlexMessage = flex_message
-            line_bot_api.reply_message(reply_token, FlexSendMessage('Top Token List', FlexMessage))
+            line_bot_api.reply_message(reply_token, FlexSendMessage('Top Token List', flex_message))
         else:
             flex_message = CreatePriceTable.create_price_table(message)
-            FlexMessage = flex_message
-            #print(FlexMessage, type(FlexMessage))
-            line_bot_api.reply_message(reply_token, FlexSendMessage('Price Table', FlexMessage))
+            line_bot_api.reply_message(reply_token, FlexSendMessage('Price Table', flex_message))
     
     #line_bot_api.reply_message(reply_token, TextSendMessage(text = event.message.text))
 

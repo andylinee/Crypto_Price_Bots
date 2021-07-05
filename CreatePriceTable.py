@@ -2,18 +2,21 @@ import json
 import requests
 import pandas as pd
 
+# Token List
 SBF_list = ['ftx-token', 'serum', 'solana', 'bonfida', 'maps', 'raydium', 'oxygen', 'sushi']
 platform_list = ['binancecoin', 'ftx-token', 'okb', 'huobi-token']
 
+# Reference Files
+json_file = "FlexMessage.json"
+token_file = "TokenPrice.json"
+
 class CreatePriceTable:
     def create_price_table(sentence):
+        """ Return User-typed Token Price Table """
         token_list = sentence.split(' ')[1:]
-        json_file = "FlexMessage.json"
-        token_file = "TokenPrice.json"
         with open(json_file, 'r') as jf:
             FlexMessage = json.load(jf)
             print(FlexMessage)
-            #TokenPrice = json.load("TokenPrice.json")
             if token_list[0] == "SBF":
                 token_list = SBF_list
                 FlexMessage["header"]["contents"][0]["text"] = 'SBF Token'
@@ -44,6 +47,7 @@ class CreatePriceTable:
         return FlexMessage
 
     def top_token_list(sentence):
+        """ Return Top-n Token Price Table """
         num_top = sentence.split(' ')[2]
         json_file = "FlexMessage.json"
         token_file = "TokenPrice.json"
