@@ -11,7 +11,7 @@ json_file = "FlexMessage.json"
 token_file = "TokenPrice.json"
 
 class CreatePriceTable:
-    def create_price_table(sentence):
+    def get_token_price_table(sentence):
         """ Return User-typed Token Price Table """
         token_list = sentence.split(' ')[1:]
         with open(json_file, 'r') as jf:
@@ -46,7 +46,7 @@ class CreatePriceTable:
                 jf.close()
         return FlexMessage
 
-    def top_token_list(sentence):
+    def get_top_token_price_table(sentence):
         """ Return Top-n Token Price Table """
         num_top = sentence.split(' ')[2]
         json_file = "FlexMessage.json"
