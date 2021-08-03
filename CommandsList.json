@@ -1,0 +1,22 @@
+{
+    "type": "box",
+    "layout": "horizontal",
+    "contents": [
+      {
+        "type": "text",
+        "text": "command",
+        "size": "xs",
+        "color": "#555555",
+        "flex": 1,
+        "weight": "bold",
+        "align": "start"
+      },
+      {
+        "type": "text",
+        "text": "description",
+        "size": "xxs",
+        "color": "#111111",
+        "align": "start"
+      }
+    ]
+  }

@@ -1,0 +1,56 @@
+{
+    "type": "bubble",
+    "header": {
+      "type": "box",
+      "layout": "vertical",
+      "contents": [
+        {
+          "type": "text",
+          "text": " Commands List",
+          "weight": "bold",
+          "size": "xl",
+          "margin": "md"
+        }
+      ]
+    },
+    "body": {
+      "type": "box",
+      "layout": "vertical",
+      "contents": [
+        {
+          "type": "box",
+          "layout": "vertical",
+          "margin": "md",
+          "contents": [
+            {
+              "type": "box",
+              "layout": "horizontal",
+              "contents": [
+                {
+                  "type": "text",
+                  "text": "Command",
+                  "size": "sm",
+                  "color": "#555555",
+                  "flex": 1,
+                  "weight": "bold",
+                  "align": "start"
+                },
+                {
+                  "type": "text",
+                  "text": "Description",
+                  "size": "sm",
+                  "color": "#111111",
+                  "weight": "bold",
+                  "align": "start"
+                }
+              ]
+            },
+            {
+              "type": "separator",
+              "margin": "md"
+            }
+          ]
+        }
+      ]
+    }
+  }
