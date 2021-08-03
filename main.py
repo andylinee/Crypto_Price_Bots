@@ -41,7 +41,7 @@ def handle_message(event):
     sent = message.split(' ')
     if sent[0] == '$':
         """ Get Price Info: current price, 24hr %, 7day % """
-        if sent[1] == "top":
+        if sent[1] == "Top":
             """ Get Top Token Price Table """
             flex_message = CreatePriceTable.get_top_token_price_table(message)
             line_bot_api.reply_message(reply_token, FlexSendMessage('Top Token List', flex_message))
