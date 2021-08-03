@@ -75,3 +75,25 @@ class CreatePriceTable:
                     tp.close()
                 jf.close()
         return FlexMessage
+    
+    def get_commands_list():
+        """ Return Commands List """
+        json_file = "CmdFlexMessage.json"
+        cmd_file = "CommandsList.json"
+        cmdDict = {
+            "$ <token_id>": "One token price",
+            "$ <tid1> <tid2> ...": "Many tokens price",
+            "$ Top <num>": "Top <num> tokens",
+            "$ SBF": "SBF-series tokens",
+            "$ Platform": "Platform tokens"}
+        with open(json_file, 'r') as jf:
+            FlexMessage = json.load(jf)
+            for cmd, desc in cmdDict.items():
+                with open(cmd_file, 'r') as cp:
+                    cmd_json = json.load(cp)
+                    cmd_json["contents"][0]["text"] = cmd
+                    cmd_json["contents"][1]["text"] = desc
+                    FlexMessage["body"]["contents"][0]["contents"].append(cmd_json)
+                    cp.close()
+                jf.close()
+        return FlexMessage

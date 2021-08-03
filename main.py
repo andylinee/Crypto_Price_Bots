@@ -52,6 +52,10 @@ def handle_message(event):
     elif sent[0] == '@':
         """ Get the Price Graph """
         pass
+    elif (sent[0].casefold() == "commands") or (sent[0] == "指令"):
+        """ Get the commands list """
+        flex_message = CreatePriceTable.get_commands_list()
+        line_bot_api.reply_message(reply_token, FlexSendMessage('Commands List', flex_message))
 
     #line_bot_api.reply_message(reply_token, TextSendMessage(text = event.message.text))
 
